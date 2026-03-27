@@ -1,0 +1,2 @@
+com.groupc.shared.config.SharedAutoConfiguration
+com.groupc.shared.security.SharedSecurityConfig
