@@ -1,8 +1,8 @@
-# Wigell Shared Library 🛠️
+# Wigell Shared Library
 
 Detta bibliotek tillhandahåller gemensam infrastruktur för Wigell-mikrotjänster, inklusive säkerhetskonfiguration, loggning och felhantering. Biblioteket är byggt för Java 24 och Spring Boot 3.5.4.
 
-## ✨ Innehåll
+## Innehåll
 * **Säkerhet:** Förkonfigurerad Keycloak-integration och rollhantering.
 * **Loggning:** Automatisk audit-loggning via AspectJ.
 * **Klient:** Valutaklient med stöd för virtuella trådar (Project Loom).
@@ -10,7 +10,7 @@ Detta bibliotek tillhandahåller gemensam infrastruktur för Wigell-mikrotjänst
 
 ---
 
-## 📘 Integrationsguide
+## Integrationsguide
 
 ### 1. Installation
 Lägg till biblioteket som en beroende i ditt projekts `pom.xml`:
