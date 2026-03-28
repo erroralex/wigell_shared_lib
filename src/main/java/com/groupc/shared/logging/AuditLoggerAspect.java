@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Component;
 
 /**
@@ -53,7 +54,10 @@ public class AuditLoggerAspect {
 
     @Pointcut(  "execution(* com..*Service.create*(..)) || " +
                 "execution(* com..*Service.update*(..)) || " +
-                "execution(* com..*Service.delete*(..))")
+                "execution(* com..*Service.delete*(..)) || " +
+                "execution(* edu..*Service.create*(..)) || " +
+                "execution(* edu..*Service.update*(..)) || " +
+                "execution(* edu..*Service.delete*(..))")
     public void mutatingServiceMethods() {
     }
 
@@ -81,6 +85,9 @@ public class AuditLoggerAspect {
 
     private String getCurrentUsername() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth instanceof JwtAuthenticationToken jwtAuth) {
+            return jwtAuth.getTokenAttributes().getOrDefault("preferred_username", auth.getName()).toString();
+        }
         return (auth != null && auth.isAuthenticated()) ? auth.getName() : "system";
     }
 }

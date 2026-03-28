@@ -44,7 +44,7 @@ public class CurrencyClient {
 
     public double getExchangeRate(String fromCurrency, String toCurrency) {
         var request = HttpRequest.newBuilder()
-                .uri(URI.create(currencyServiceUrl + "/api/v1/rates?from=" + fromCurrency + "&to=" + toCurrency))
+                .uri(URI.create(currencyServiceUrl + "/api/v1/currency/convert?base=" + fromCurrency + "&target=" + toCurrency))
                 .GET()
                 .build();
 
