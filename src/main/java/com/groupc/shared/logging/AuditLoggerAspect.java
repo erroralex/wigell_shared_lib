@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * {@code AuditLoggerAspect} är en AspectJ-aspekt som tillhandahåller auditloggning
  * för datamuterande operationer inom tjänstlager (service layer) i applikationen.
  * Denna aspekt fångar upp anrop till metoder i klasser som slutar på "Service"
- * och vars namn börjar med "create", "update" eller "delete".
+ * och vars namn börjar med "create", "update", "patch" eller "delete".
  *
  * <p>När en sådan metod har exekverats framgångsrikt, loggas en audit-händelse
  * som indikerar vilken användare som utförde operationen och vilken typ av entitet
@@ -55,9 +55,13 @@ public class AuditLoggerAspect {
     @Pointcut(  "execution(* com..*Service.create*(..)) || " +
                 "execution(* com..*Service.update*(..)) || " +
                 "execution(* com..*Service.delete*(..)) || " +
+                "execution(* com..*Service.patch*(..)) || " +
+
                 "execution(* edu..*Service.create*(..)) || " +
                 "execution(* edu..*Service.update*(..)) || " +
+                "execution(* edu..*Service.patch*(..)) || " +
                 "execution(* edu..*Service.delete*(..))")
+
     public void mutatingServiceMethods() {
     }
 
